@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <link rel ="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form>
+    <h2>Weather</h2><br>
+    
+      <label for="city">Enter a city: </label><br><br>
+      <input type="text" id="city" name="city"><br><br>
+      <button type="button" onclick="getWeather()">Search</button>
+    
+    <br>
+    <h1><div id="weather-info"></div></h1>
+
+  </form>
+    <script>
+        function getWeather() {
+  // Get the city from the input field
+  let city = document.querySelector('#city').value;
+  
+  // Make a request to the OpenWeatherMap API
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ecc08b34e5fa5a6c4b1b56ca89720559`)
+    .then(response => response.json())
+    .then(data => {
+       // Get the temperature in Kelvin
+let tempKelvin = data.main.temp;
+
+// Convert the temperature to Celsius
+let tempCelsius = tempKelvin - 273.15;
+
+// Round the temperature to one decimal place
+tempCelsius = tempCelsius.toFixed(1);
+let description = data.weather[0].description;
+let humidity = data.main.humidity;
+    let windSpeed = data.wind.speed;
+    // let windSpeedKmh = windSpeed * 1.609;
+
+// Update the weather info element on the page to display the temperature in Celsius
+let weatherInfo = document.querySelector('#weather-info');
+weatherInfo.innerHTML = `Temperature: ${tempCelsius}°C<br>Conditions: ${description}<br>Humidity: ${humidity}%`;
+
+
+      // Get the weather info from the API response
+    //   let temp = data.main.temp;
+    //   let description = data.weather[0].description;
+      
+    //   Update the weather info element on the page
+    //   let weatherInfo = document.querySelector('#weather-info');
+    //   weatherInfo.innerHTML = `Temperature: ${temp}°f<br>Conditions: ${description}`;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    // Get the temperature in Fahrenheit
+
+}
+    
+fetch('https://api.unsplash.com/photos/random?query=beach&client_id=Tx0f31LM2uxMV7u20m_7_MvPhW5SDwM58uTYkTvdAU4')
+  .then(response => response.json())
+  .then(data => {
+    const imageUrl = data.urls.full;
+    document.body.style.backgroundImage = `url(${imageUrl})`;
+  });
+
+
+
+    </script>
+  </body>
+</html>
