@@ -16,45 +16,40 @@
     <h1><div id="weather-info"></div></h1>
 
   </form>
+  <div class="designed">
+    <p class="data">Designed by<br> <span class="clr">Aravind Chilpa</span></p>
+</div>
     <script>
         function getWeather() {
-  // Get the city from the input field
+  
   let city = document.querySelector('#city').value;
   
-  // Make a request to the OpenWeatherMap API
+  
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ecc08b34e5fa5a6c4b1b56ca89720559`)
     .then(response => response.json())
     .then(data => {
-       // Get the temperature in Kelvin
+       
 let tempKelvin = data.main.temp;
 
-// Convert the temperature to Celsius
+
 let tempCelsius = tempKelvin - 273.15;
 
-// Round the temperature to one decimal place
+
 tempCelsius = tempCelsius.toFixed(1);
 let description = data.weather[0].description;
 let humidity = data.main.humidity;
     let windSpeed = data.wind.speed;
-    // let windSpeedKmh = windSpeed * 1.609;
-
-// Update the weather info element on the page to display the temperature in Celsius
+    
 let weatherInfo = document.querySelector('#weather-info');
 weatherInfo.innerHTML = `Temperature: ${tempCelsius}°C<br>Conditions: ${description}<br>Humidity: ${humidity}%`;
 
 
-      // Get the weather info from the API response
-    //   let temp = data.main.temp;
-    //   let description = data.weather[0].description;
-      
-    //   Update the weather info element on the page
-    //   let weatherInfo = document.querySelector('#weather-info');
-    //   weatherInfo.innerHTML = `Temperature: ${temp}°f<br>Conditions: ${description}`;
+     
     })
     .catch(error => {
       console.error(error);
     });
-    // Get the temperature in Fahrenheit
+  
 
 }
     
