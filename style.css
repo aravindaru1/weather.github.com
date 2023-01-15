@@ -70,4 +70,18 @@ display: flex;
     color: rgb(250, 247, 249);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
+ .designed{
+    position: absolute;;
+padding: 20px;
+bottom: 0;right: 0;
+}
+.data{
+    font-size: x-small;
+    font-weight: bolder;
+}
+.clr{
+    color: #001104;
+    font-size: 15px;
+}
+  
   
