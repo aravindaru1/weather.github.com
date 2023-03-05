@@ -10,9 +10,10 @@
     <h2>Weather</h2><br>
     
       <label for="city">Enter a city: </label><br><br>
+     <div id="myForm">
       <input type="text" id="city" name="city"><br><br>
       <button type="button" onclick="getWeather()"  id="myButton">Search</button>
-    
+      </div>
     <br>
     <h1><div id="weather-info"></div></h1>
 
@@ -57,8 +58,18 @@ weatherInfo.innerHTML = `Temperature: ${tempCelsius}°C<br>Conditions: ${descrip
       document.addEventListener("contextmenu", (event) => {
          event.preventDefault();
       })
-      var input = document.getElementById("city");
+    // Get the form element, input field, and button
+var form = document.getElementById("myForm");
+var input = document.getElementById("city");
 var button = document.getElementById("myButton");
+
+// Execute a function when the user submits the form
+form.addEventListener("submit", function(event) {
+  // Cancel the default action
+  event.preventDefault();
+  // Trigger the button element with a click
+  button.click();
+});
 
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
