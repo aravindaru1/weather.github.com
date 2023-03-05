@@ -11,7 +11,7 @@
     
       <label for="city">Enter a city: </label><br><br>
       <input type="text" id="city" name="city"><br><br>
-      <button type="button" onclick="getWeather()">Search</button>
+      <button type="button" onclick="getWeather()"  id="myButton">Search</button>
     
     <br>
     <h1><div id="weather-info"></div></h1>
@@ -57,6 +57,19 @@ weatherInfo.innerHTML = `Temperature: ${tempCelsius}°C<br>Conditions: ${descrip
       document.addEventListener("contextmenu", (event) => {
          event.preventDefault();
       })
+      var input = document.getElementById("city");
+var button = document.getElementById("myButton");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    button.click();
+  }
+})
 fetch('https://api.unsplash.com/photos/random?query=beach&client_id=Tx0f31LM2uxMV7u20m_7_MvPhW5SDwM58uTYkTvdAU4')
   .then(response => response.json())
   .then(data => {
