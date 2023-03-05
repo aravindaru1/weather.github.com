@@ -52,7 +52,10 @@ weatherInfo.innerHTML = `Temperature: ${tempCelsius}°C<br>Conditions: ${descrip
   
 
 }
-    
+ 
+      document.addEventListener("contextmenu", (event) => {
+         event.preventDefault();
+      })
 fetch('https://api.unsplash.com/photos/random?query=beach&client_id=Tx0f31LM2uxMV7u20m_7_MvPhW5SDwM58uTYkTvdAU4')
   .then(response => response.json())
   .then(data => {
